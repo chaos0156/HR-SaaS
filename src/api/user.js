@@ -1,8 +1,10 @@
 import request from '@/utils/request'
 
+// 登录接口封装
 export function login(data) {
+  // axios发起请求后会返回一个promise对象
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/sys/login',
     method: 'post',
     data
   })
