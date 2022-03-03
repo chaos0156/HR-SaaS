@@ -14,7 +14,7 @@ const whiteList = ['/login', '/404'] // no redirect whitelist
 // next() 放过通行
 // next(false) 跳转终止
 // next(地址) 跳转到某个地址
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   NProgress.start()
   if (store.getters.token) {
     // 有token
@@ -22,6 +22,10 @@ router.beforeEach((to, from, next) => {
       // 访问登录页面的话
       next('/')
     } else {
+      if (!store.getters.userId) {
+        await store.dispatch('user/getUserBasicInfo')
+        // 如果后续要执行的代码中 需要根据用户的基本资料的话，这里必须改成同步，添加await
+      }
       // 如果不是访问登陆页面直接放行
       next()
     }

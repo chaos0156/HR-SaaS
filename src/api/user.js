@@ -10,11 +10,18 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+// 获取用户基本资料接口
+export function getUserBasicInfo() {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    url: '/sys/profile',
+    method: 'post'
+  })
+}
+
+// 根据员工id，获取员工基本信息【用来获取头像】
+export function getEmployeeBasicInfo(id) {
+  return request({
+    url: `/sys/user/${id}`
   })
 }
 
