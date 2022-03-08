@@ -7,6 +7,10 @@ const getters = {
   avatar: state => state.user.userBasicInfo.staffPhoto,
   // 快速访问用户名
   name: state => state.user.userBasicInfo.username,
-  userId: state => state.user.userBasicInfo.userId
+  userId: state => state.user.userBasicInfo.userId,
+  // 快速获取公司名
+  company: state => state.user.userBasicInfo.company,
+  // 快速获取部门名
+  departmentName: state => state.user.userBasicInfo.departmentName
 }
 export default getters
