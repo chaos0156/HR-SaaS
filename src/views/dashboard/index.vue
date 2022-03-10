@@ -38,7 +38,7 @@
                   <div class="item">
                     <img src="@/assets/common/img.jpeg" alt="">
                     <div>
-                      <p><span class="col">朱继柳</span> 发布了 第3期“传智大讲堂”互动讨论获奖名单公布</p>
+                      <p><span class="col">晴天</span> 发布了 第3期“传智大讲堂”互动讨论获奖名单公布</p>
                       <p>{{ currentYear }}-{{ currentMonth }}-{{ currentDay }} {{ currentH }}:{{ currentM }}:{{ currentS }}</p>
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                   <div class="item">
                     <img src="@/assets/common/img.jpeg" alt="">
                     <div>
-                      <p><span class="col">朱继柳</span> 发布了 第2期“传智大讲堂”互动讨论获奖名单公布</p>
+                      <p><span class="col">小黄</span> 发布了 第2期“传智大讲堂”互动讨论获奖名单公布</p>
                       <p>{{ currentYear }}-{{ currentMonth-1 }}-{{ currentDay-1 }} {{ currentH-4 }}:{{ currentM-5 }}:{{ currentS }}</p>
                     </div>
                   </div>
@@ -56,7 +56,7 @@
                   <div class="item">
                     <img src="@/assets/common/img.jpeg" alt="">
                     <div>
-                      <p><span class="col">朱继柳</span> 发布了 第1期“传智大讲堂”互动讨论获奖名单公布</p>
+                      <p><span class="col">小柳</span> 发布了 第1期“传智大讲堂”互动讨论获奖名单公布</p>
                       <p>{{ currentYear }}-{{ currentMonth-2 }}-{{ currentDay-3 }} {{ currentH-1 }}:{{ currentM-3 }}:{{ currentS }}</p>
                     </div>
                   </div>
@@ -73,7 +73,7 @@
             <span>流程申请</span>
           </div>
           <div class="sideNav">
-            <el-button class="sideBtn">加班离职</el-button>
+            <el-button class="sideBtn" @click="dialogVisible = true">加班离职</el-button>
             <el-button class="sideBtn">请假调休</el-button>
             <el-button class="sideBtn">审批列表</el-button>
             <el-button class="sideBtn">我的信息</el-button>
@@ -85,7 +85,10 @@
           <div slot="header" class="header">
             <span>绩效指数</span>
           </div>
-        <!-- 放置雷达图 -->
+          <!-- 放置雷达图 -->
+          <div class="radarEchart">
+            <radar />
+          </div>
         </el-card>
         <!-- 帮助连接 -->
         <el-card class="box-card">
@@ -117,15 +120,46 @@
         </el-card>
       </el-col>
     </el-row>
+    <el-dialog
+      title="申请离职"
+      :visible.sync="dialogVisible"
+      width="30%"
+    >
+      <el-form ref="refForm" label-width="100px" :model="applyForm" label-position="left">
+        <el-form-item label="期望离职时间">
+          <el-col :span="11">
+            <el-date-picker
+              v-model="applyForm.exceptTime"
+              placeholder="选择日期时间"
+              style="width: 100%;"
+              type="datetime"
+              value-format="yyyy-MM-dd HH:mm:ss"
+            />
+          </el-col>
+        </el-form-item>
+        <el-form-item label="离职原因">
+          <el-input v-model="applyForm.reason" type="textarea" placeholder="请输入内容" :rows="3" style="width:70%" />
+        </el-form-item>
+        <el-form-item>
+          <el-row type="flex" justify="end">
+            <el-col :span="10">
+              <el-button @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </el-col>
+          </el-row>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Radar from './components/radar.vue'
 import workCalendar from './components/work-calendar.vue'
 export default {
   name: 'Dashboard',
-  components: { workCalendar },
+  components: { workCalendar, Radar },
   props: {
     startDate: {
       type: Date,
@@ -140,7 +174,12 @@ export default {
       currentDay: null,
       currentH: null,
       currentM: null,
-      currentS: null
+      currentS: null,
+      dialogVisible: false,
+      applyForm: {
+        exceptTime: '',
+        reason: ''
+      }
     }
   },
   computed: {
@@ -217,6 +256,11 @@ export default {
       border-bottom: 4px solid #8a97f8;
       padding-bottom: 10px;
     }
+  }
+  .radarEchart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .header-card{
