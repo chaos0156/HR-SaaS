@@ -84,6 +84,7 @@ export const asyncRoutes = [
 
 const createRouter = () => new Router({
   mode: 'history', // require service support
+  base: '/hr/', // 配置项目的基础地址
   scrollBehavior: () => ({ y: 0 }),
   routes: [...constantRoutes, ...asyncRoutes]
 })

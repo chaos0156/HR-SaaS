@@ -8,6 +8,29 @@ function resolve(dir) {
 
 const name = defaultSettings.title || 'vue Admin Template' // page title
 
+let cdn = { css: [], js: [] }
+let externals = {}
+const isProd = process.env.NODE_ENV === 'production'
+if (isProd) {
+  externals =
+  {
+    'vue': 'Vue',
+    'element-ui': 'ELEMENT'
+  }
+  cdn = {
+    css: [
+      // element-ui css
+      'https://unpkg.com/element-ui/lib/theme-chalk/index.css' // 样式表
+    ],
+    js: [
+      // 必须先引入vue
+      'https://unpkg.com/vue@2.6.10/dist/vue.js', // vuejs
+      // element-ui js
+      'https://unpkg.com/element-ui/lib/index.js' // elementUI
+    ]
+  }
+}
+
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
@@ -46,6 +69,7 @@ module.exports = {
     }
     // before: require('./mock/mock-server.js')
   },
+  // 配置webpack
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -54,7 +78,9 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    // 排除vue和element-ui
+    externals
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -68,6 +94,14 @@ module.exports = {
       }
     ])
 
+    // 注入cdn变量
+    // 这行代码会在执行打包时，执行，就会将cdn注入到html模板中
+    config.plugin('html').tap(args => {
+      // args是注入html模板的一个变量
+      // 等式右边的cdn是配置好的cdn
+      args[0].cdn = cdn
+      return args
+    })
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
 
