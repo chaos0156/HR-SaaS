@@ -67,19 +67,23 @@
       border: none;
       height: 100%;
       width: 100% !important;
+      .el-menu-item.is-active{
+        color:#43a7fe;
+        background-color: #fff !important;
+      }
       a{
         li{
           .svg-icon{
-            color: rgb(17, 14, 14);
+            //color: rgb(17, 14, 14);
             font-size: 18px;
             vertical-align: middle;
             .icon{
               color:rgb(17, 14, 14);
             }
           }
-          span{
-            color: rgb(17, 14, 14);
-          }
+          // span{
+          //   color: rgb(17, 14, 14);
+          // }
           &:hover{
             .svg-icon{
               color: #43a7fe

@@ -10,7 +10,7 @@
           </div>
           <div class="headInfoTip">
             <p class="firstChild">早安，{{ name }}，祝你开心每一天！</p>
-            <p class="lastChild">{{ name }} || {{ company }}-{{ departmentName }}</p>
+            <p class="lastChild">{{ name }} || 南京邮电大学 - 计算机学院、软件学院、网络空间安全学院</p>
           </div>
         </div>
         <div class="fr" />
