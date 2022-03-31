@@ -115,3 +115,21 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+// 将列表型数据转化为树形数据 ==> 递归算法
+// 遍历树形有一个要点，找到root
+export function transListToTreeData(list, root) {
+  const res = []
+  list.forEach(i => {
+    if (i.pid === root) {
+      // 找到之后 找有无子节点
+      const children = transListToTreeData(list, i.id)
+      if (children.length) {
+      //  如果children长度大于0，则有子节点
+        i.children = children
+      }
+      res.push(i)
+    }
+  })
+  return res
+}
