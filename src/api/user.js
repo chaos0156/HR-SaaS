@@ -25,6 +25,7 @@ export function getEmployeeBasicInfo(id) {
   })
 }
 
+// 登出
 export function logout() {
   return request({
     url: '/vue-admin-template/user/logout',

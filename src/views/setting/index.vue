@@ -1,9 +1,9 @@
 <template>
   <div class="dashboard-container">
     <div class="app-container">
-      <el-card class="box-card">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="角色管理" name="third">
+      <el-card>
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="角色管理" name="one">
             <el-row style="height: 60px">
               <el-button
                 type="primary"
@@ -22,7 +22,7 @@
               <el-table-column prop="name" label="角色名" width="200" />
               <el-table-column prop="description" label="描述" />
               <el-table-column label="操作" width="300">
-                <template slot-scope="slot">
+                <template v-slot="slot">
                   <el-button size="small" type="success">分配权限</el-button>
                   <el-button
                     size="small"
@@ -150,7 +150,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      activeName: 'third',
+      activeName: 'one',
       form: '',
       rolesList: [],
       queryInfo: {
