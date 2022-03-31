@@ -29,6 +29,7 @@ export default {
   methods: {
     getBreadcrumb() {
       // only show routes with meta.title
+      // 每一个item就是一条路由记录
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
       const first = matched[0]
 

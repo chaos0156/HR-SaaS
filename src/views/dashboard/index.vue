@@ -123,11 +123,11 @@
     <el-dialog
       title="申请离职"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="25%"
     >
       <el-form ref="refForm" label-width="100px" :model="applyForm" label-position="left">
         <el-form-item label="期望离职时间">
-          <el-col :span="11">
+          <el-col :span="13">
             <el-date-picker
               v-model="applyForm.exceptTime"
               placeholder="选择日期时间"
@@ -138,11 +138,11 @@
           </el-col>
         </el-form-item>
         <el-form-item label="离职原因">
-          <el-input v-model="applyForm.reason" type="textarea" placeholder="请输入内容" :rows="3" style="width:70%" />
+          <el-input v-model="applyForm.reason" type="textarea" placeholder="请输入内容" :rows="3" style="width:90%" />
         </el-form-item>
         <el-form-item>
           <el-row type="flex" justify="end">
-            <el-col :span="10">
+            <el-col :span="12">
               <el-button @click="dialogVisible = false">取 消</el-button>
               <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
             </el-col>
