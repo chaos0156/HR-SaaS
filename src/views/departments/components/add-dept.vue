@@ -66,7 +66,7 @@ import {
   getDepartmentsById,
   editDepartmentsById
 } from '@/api/departments'
-import { getEmployeesList } from '@/api/employee'
+import { getEmployeesList } from '@/api/employees'
 export default {
   props: {
     showDia: {

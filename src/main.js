@@ -15,10 +15,17 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import Component from '@/components'
+
 import * as directives from '@/directives'
+import * as filters from '@/filters'
 
 Object.keys(directives).forEach((item) => {
   Vue.directive(item, directives[item])
+})
+
+Object.keys(filters).forEach((i) => {
+  Vue.filter(i, filters[i])
 })
 
 /**
@@ -29,16 +36,14 @@ Object.keys(directives).forEach((item) => {
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-// if (process.env.NODE_ENV === 'production') {
-//   const { mockXHR } = require('../mock')
-//   mockXHR()
-// }
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 Vue.config.productionTip = false
+
+Vue.use(Component) // 注册全局组件，以插件形式
 
 new Vue({
   el: '#app',

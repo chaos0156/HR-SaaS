@@ -160,7 +160,13 @@ export default {
       },
       firmdata: {
         // 公司信息
+        name: '江苏新能源公司',
+        companyAddress: '江苏省南京市玄武区76号中山陵下',
+        companyPhone: '400-618-9090',
+        mailbox: 'wangcy000123@123.com',
+        remarks: '落霞与孤鹜齐飞'
       },
+      formdata: {},
       roleForm: {
         name: '',
         description: ''
@@ -194,7 +200,7 @@ export default {
       this.getRoles()
     },
     async getCompanyInfo() {
-      this.firmdata = await getCompanyInfo(this.companyId)
+      this.formdata = await getCompanyInfo(this.companyId)
     },
     async deleteRole(id) {
       // #region

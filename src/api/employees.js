@@ -8,7 +8,7 @@ export function getEmployeesList() {
 }
 
 // 获取全部员工列表
-export function getEmployeesListWhole(params) {
+export function getEmployeeList(params) {
   return request({
     url: '/sys/user',
     params

@@ -356,31 +356,20 @@ export function minHeight(resfile) {
   return document.body.clientHeight - 180 + 'px'
 }
 
-export function formatDate(date, fmt = 'yyyy-MM-dd') {
-  if (!(date instanceof Array)) {
-    date = new Date(date)
-  }
-  if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
-  }
-  const o = {
-    'M+': date.getMonth() + 1,
-    'd+': date.getDate(),
-    'h+': date.getHours(),
-    'm+': date.getMinutes(),
-    's+': date.getSeconds()
-  }
-  for (const k in o) {
-    if (new RegExp(`(${k})`).test(fmt)) {
-      const str = o[k] + ''
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
-    }
-  }
-  return fmt
+export function formatDate(str) {
+  const date = new Date(str)
+  const YYYY = date.getFullYear()
+  const MM = padLeftZero(date.getMonth() + 1)
+  const DD = padLeftZero(date.getDate())
+  const hh = padLeftZero(date.getHours())
+  const mm = padLeftZero(date.getMinutes())
+  const ss = padLeftZero(date.getSeconds())
+  return `${YYYY}-${MM}-${DD} ${hh}:${mm}:${ss}`
 }
 
-function padLeftZero(str) {
-  return ('00' + str).substr(str.length)
+function padLeftZero(num) {
+  const str = '' + num
+  return str.length < 2 ? '0' + str : str
 }
 export function getBlob(response) {
   const blob = new Blob([response.data], {

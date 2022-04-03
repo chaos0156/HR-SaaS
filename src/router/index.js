@@ -10,7 +10,6 @@ import Layout from '@/layout'
 import departmentsRouter from './modules/departments'
 import employeesRouter from './modules/employees'
 import permissionRouter from './modules/permission'
-import attendancesRouter from './modules/attendances'
 import settingRouter from './modules/setting'
 
 /**
@@ -72,7 +71,6 @@ export const asyncRoutes = [
   departmentsRouter,
   employeesRouter,
   permissionRouter,
-  attendancesRouter,
   settingRouter
 ]
 
