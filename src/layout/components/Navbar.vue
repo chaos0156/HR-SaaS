@@ -7,12 +7,15 @@
     />
 
     <div class="app-breadcrumb">
-      人力资源管理系统
-      <span class="breadBtn">企业版</span>
+      {{ $t('login.title') }}
+      <span class="breadBtn">
+        {{ $t('login.edition') }}
+      </span>
     </div>
     <!-- <breadcrumb class="breadcrumb-container" /> -->
-
     <div class="right-menu">
+      <!-- 放置多语言插件 -->
+      <lang-select class="right-menu-item" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imageerror="defaultImage" :src="avatar" class="user-avatar">
@@ -39,7 +42,6 @@
 import { mapGetters } from 'vuex'
 // import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-
 export default {
   components: {
     // Breadcrumb,
@@ -100,7 +102,7 @@ export default {
 
     .right-menu-item {
       display: inline-block;
-      padding: 0 8px;
+      padding: 0 18px;
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
@@ -120,8 +122,8 @@ export default {
       margin-right: 30px;
 
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
+        top:-17px;
 
         .user-avatar {
           cursor: pointer;

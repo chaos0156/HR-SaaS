@@ -5,6 +5,7 @@
         <span slot="before">共{{ page.total }}条记录</span>
         <template slot="after">
           <el-button
+            v-if="checkPermission('POINT-USER-ADD')"
             icon="plus"
             size="small"
             type="primary"
@@ -43,6 +44,7 @@
                 @click="editRole(row.id)"
               >员工角色</el-button>
               <el-button
+                :disabled="!checkPermission('point-user-delete')"
                 type="danger"
                 size="large"
                 @click="deleteEmployee(row.id)"

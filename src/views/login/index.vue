@@ -64,7 +64,7 @@
       </div>
       <div class="tips">
         <span>普通员工权限</span>
-        <span style="margin-right: 20px">username: 13800000003</span>
+        <span style="margin-right: 20px">username: 13800000004</span>
         <span> password: 123456</span>
       </div>
     </el-form>
