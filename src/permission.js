@@ -23,15 +23,25 @@ router.beforeEach(async(to, from, next) => {
       next('/')
     } else {
       if (!store.getters.userId) {
-        await store.dispatch('user/getUserBasicInfo')
+        const { roles: { menus }} = await store.dispatch('user/getUserBasicInfo')
         // 如果后续要执行的代码中 需要根据用户的基本资料的话，这里必须改成同步，添加await
+        // 获取筛选用户的路由权限，添加到路由表中
+        const routes = await store.dispatch('permission/filteRoutes', menus)
+        // 添加到路由表中
+        router.addRoutes([...routes, { path: '*', redirect: '/404', hidden: true }]) // 添加到路由表
+        // 添加完动态路由之后
+        // addRoutes  必须 用 next(地址) 不能用next()
+        next(to.path) // 相当于跳到对应的地址  相当于多做一次跳转 为什么要多做一次跳转
+        // 进门了，但是进门之后我要去的地方的路还没有铺好，
+        // 直接走，掉坑里，多做一次跳转，再从门外往里进一次，跳转之前 把路铺好，再次进来的时候，路就铺好了
+      } else {
+        // 如果不是访问登陆页面直接放行
+        next()
       }
-      // 如果不是访问登陆页面直接放行
-      next()
     }
   } else {
     if (whiteList.includes(to.path)) {
-    // 如果访问的是白名单上的地址,则直接放过通行
+      // 如果访问的是白名单上的地址,则直接放过通行
       next()
     } else {
       next('/login')

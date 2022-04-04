@@ -12,6 +12,7 @@ const getters = {
   company: state => state.user.userBasicInfo.company,
   // 快速获取部门名
   departmentName: state => state.user.userBasicInfo.departmentName,
-  companyId: state => state.user.userBasicInfo.companyId // 建立对于公司ID的快捷访问
+  companyId: state => state.user.userBasicInfo.companyId, // 建立对于公司ID的快捷访问
+  routes: state => state.permission.routes // 快速访问用户权限路由
 }
 export default getters

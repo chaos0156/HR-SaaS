@@ -141,10 +141,10 @@
           <el-input v-model="applyForm.reason" type="textarea" placeholder="请输入内容" :rows="3" style="width:90%" />
         </el-form-item>
         <el-form-item>
-          <el-row type="flex" justify="end">
-            <el-col :span="12">
-              <el-button @click="dialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          <el-row type="flex" justify="center">
+            <el-col :span="15">
+              <el-button size="small" @click="dialogVisible = false">取 消</el-button>
+              <el-button type="primary" size="small" @click="dialogVisible = false">确 定</el-button>
             </el-col>
           </el-row>
         </el-form-item>

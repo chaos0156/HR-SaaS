@@ -37,16 +37,16 @@
           </el-table-column>
           <el-table-column label="操作" sortable="" fixed="right" width="280">
             <template v-slot="{ row }">
-              <el-button type="text" size="small">查看</el-button>
-              <el-button type="text" size="small">转正</el-button>
-              <el-button type="text" size="small">调岗</el-button>
-              <el-button type="text" size="small">离职</el-button>
-              <el-button type="text" size="small">角色</el-button>
               <el-button
-                type="text"
-                size="small"
+                type="primary"
+                size="large"
+                @click="editRole(row.id)"
+              >员工角色</el-button>
+              <el-button
+                type="danger"
+                size="large"
                 @click="deleteEmployee(row.id)"
-              >删除</el-button>
+              >删除员工</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -68,6 +68,11 @@
       </el-card>
     </div>
     <add-employee :show-dialog.sync="showDialog" />
+    <assign-roles
+      ref="assignRole"
+      :show-role-dialog.sync="showRoleDialog"
+      :user-id="userId"
+    />
   </div>
 </template>
 
@@ -75,20 +80,24 @@
 import { getEmployeeList, deleteEmployees } from '@/api/employees'
 import EmployeeEnum from '@/api/constant/employees'
 import AddEmployee from './components/add-employee'
+import AssignRoles from './components/assign-roles.vue'
 export default {
   components: {
-    AddEmployee
+    AddEmployee,
+    AssignRoles
   },
   data() {
     return {
       showDialog: false,
+      showRoleDialog: false,
       loading: false,
       list: [], // 接数据的
       page: {
         page: 1, // 当前页码
         size: 10,
         total: 0 // 总数
-      }
+      },
+      userId: null
     }
   },
   created() {
@@ -121,6 +130,12 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    // 给员工分配角色
+    async editRole(id) {
+      await this.$refs.assignRole.getUserDetailById(id)
+      this.showRoleDialog = true
+      this.userId = id
     }
   }
 }

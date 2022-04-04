@@ -57,10 +57,16 @@
         @click.native.prevent="handleLogin"
       >登 录</el-button>
 
-      <!-- <div class="tips">
-        <span style="margin-right: 20px">username: admin</span>
-        <span> password: any</span>
-      </div> -->
+      <div class="tips">
+        <span>管理员权限</span>
+        <span style="margin-right: 20px">username: 13800000002</span>
+        <span> password: 123456</span>
+      </div>
+      <div class="tips">
+        <span>普通员工权限</span>
+        <span style="margin-right: 20px">username: 13800000003</span>
+        <span> password: 123456</span>
+      </div>
     </el-form>
   </div>
 </template>
@@ -223,7 +229,7 @@ $light_gray: #eee;
 
   .tips {
     font-size: 14px;
-    color: #fff;
+    color: #000;
     margin-bottom: 10px;
 
     span {
