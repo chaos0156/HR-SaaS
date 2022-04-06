@@ -87,7 +87,7 @@ export default {
   },
   login: {
     title: 'Human Resource Management System',
-    edition:'Enterprise Edition',
+    edition: 'Enterprise Edition',
     login: 'Log in',
     name: 'name',
     entryTime: 'entry time',

@@ -39,7 +39,7 @@ export default {
     overtimeApproval: '加班申请',
     securitySetting: '审批设置',
     // 员工
-    employees: '员工',
+    employees: '员工管理',
     employeesList: '员工列表',
     employeesInfo: '个人信息',
     employeesAdjust: '调岗',
@@ -85,7 +85,7 @@ export default {
   },
   login: {
     title: '人力资源管理系统',
-    edition:'企业版',
+    edition: '企业版',
     login: '登录',
     username: '账号',
     password: '密码',
